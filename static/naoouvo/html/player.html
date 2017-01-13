@@ -1,0 +1,28 @@
+<div  class="row">
+
+<div class="col-md-1 text-right">
+	<h3>
+    <a href="#" class="play" ng-if="!onPlay" 	ng-click="play()">
+		<span class="glyphicon glyphicon-play" 	></span>
+	</a>
+	<a href="#" class="play" ng-if="onPlay" 	ng-click="pause()">
+		<span class="glyphicon glyphicon-pause"></span>
+	</a>
+	</h3>
+</div>
+<div class="col-md-10 text-center">
+<p>
+<div class="progress painel" >
+  <div id="progressBar" ng-model="bar" ng-class='{"progress-bar-striped": onPlay, "":!onPlay}' class="progress-bar active " role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{durationPorcent}}%" > 
+  <a href="#" ng-click="handleProgressBarClick($event)" style="height: 20px; width: 98%;" class="barcelona"></a>
+  </div> 
+</div>
+
+{{currentAudio.title}}
+{{clock | date:'HH:mm:ss'}} / {{clockDuration | date:'HH:mm:ss'}}
+
+<audio id="player" src="{{trustSrc()}}" autobuffer="true" controls  ng-show="false"/>
+
+</p>
+</div>
+</div>

@@ -1,0 +1,32 @@
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-11">
+
+	<div class="row">
+
+	<a href="#" class="col-sm-1 text-right vcenter next-prev" style="padding: 0px" ng-click="prevPag()">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+	</a>
+    <div class="col-sm-9  vcenter" style="padding: 0px">
+			<div class="panel panel-primary" >
+				
+			  <div class="panel-heading">
+			    <h3 class="panel-title">{{feedTitle}} {{currentPod}}/{{nPod}} </h3>
+			  </div>
+			  <div class="panel-body">
+				    <div class="col-sm-3"  ng-repeat="podcast in exibition">
+				    <a href="#" class="thumbnail" ng-click="setAudio(podcast)">
+				      <img ng-src="{{podcast.img}}">
+				    </a>
+				    <p>{{getPodcastTitle(podcast.title)}}</p>
+					</div>
+
+			  </div>
+			</div>
+    </div>
+    <a href="#" class="col-sm-1 text-left vcenter next-prev" style="padding: 0px" ng-click="nextPag()">
+		<span class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+	</div>
+</div>
+<div class="col-md-1"></div>
