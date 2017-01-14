@@ -11,8 +11,9 @@ var delayFunction = 300000; //5min
 var feed = undefined;
 
 
-naoouvo.get('/server', function (req, res) {  
-    var socket = require('socket.io-client')('http://localhost:8080');
+naoouvo.get('/server', function (req, res) {
+    var PORT = process.env.PORT || 8080;
+    var socket = require('socket.io-client')('http://localhost:' + PORT);
     socket.on('connect', function(){
         socket.emit('naoouvo', 'Hello From Nao Ouvo');
     });
