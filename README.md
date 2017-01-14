@@ -1,8 +1,9 @@
-# Simple Hello World Node.js sample for Google App Engine
+# Web apps hosted on Google App Engine
 
-This sample demonstrates a tiny Hello World Node.js app for [Google App Engine Flexible Environment](https://cloud.google.com/appengine).
+Aplicações web hospedados ou direcionados para [Victor-Sousa](http://victor-sousa.appspot.com/)
 
 ## Running locally
 
-Refer to the [appengine/README.md](../README.md) file for instructions on
-running and deploying.
+`git clone https://github.com/victorhundo/node-apps.git && cd node-apps`
+
+`npm install && npm start`
