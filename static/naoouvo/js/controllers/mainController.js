@@ -2,19 +2,40 @@ angular.module("naoouvo").controller("main", function($scope, $http, $window, $s
 
     var socket = io.connect();
     socket.on('chat message', function(msg){
-        alert(msg);
+        alert('Novo Podcast! ' + msg.title);
     });
+
+    /*if (window.webkitNotifications) {
+        console.log("Notifications are supported!");
+    }
+    else {
+        console.log("Notifications are not supported for this Browser/OS version yet.");
+    }
+
+    /*if (window.webkitNotifications.checkPermission() == 0) { // 0 is PERMISSION_ALLOWED
+        // function defined in step 2
+        notification_test = window.webkitNotifications.createNotification(
+          '/res/img/icon.jpeg', 'Notification Title', 'Notification content...');
+        notification_test.ondisplay = function() { ... do something ... };
+        notification_test.onclose = function() { ... do something else ... };
+        notification_test.show();
+    } else {
+        window.webkitNotifications.requestPermission();
+    }*/
 
     var NaoOuvoFeed = "/naoouvo/feed";
     $scope.Npagination = 4;
     var count = 0;
-    $http.get(NaoOuvoFeed).success(function(data) {
-            $scope.feed = data;
+
+    $http.get(NaoOuvoFeed)
+     .then(function (success){
+        $scope.feed = success.data;
             setCurrentFeed($scope.feed.todos, "Todos");
             setCurrentAudio($scope.currentFeed[0]);
             setExibition();
-            
-    });
+     },function (error){
+        console.log("TA PEGANDO FOGO BIXO!")
+     });
 
     $scope.getImg = function(url){
        console.log(url);

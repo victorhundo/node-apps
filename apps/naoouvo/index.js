@@ -12,16 +12,33 @@ var feed = undefined;
 
 
 naoouvo.get('/server', function (req, res) {
-    var PORT = process.env.PORT || 8080;
-    var socket = require('socket.io-client')('http://localhost:' + PORT);
-    socket.on('connect', function(){
-        socket.emit('naoouvo', 'Hello From Nao Ouvo');
-    });
+    sendNotification(feed.todos[feed.todos.length - 1]);
     res.send(200);
 });
 
+var checkNewPodcast = function(newFeed){
+    if(hasNewPodcast(newFeed)){
+        sendNotification(newFeed.todos[newFeed.todos.length - 1]);
+    }
+}
+var hasNewPodcast = function(newFeed){
+    if(feed != undefined && feed.num != newFeed.num)
+        return true;
+    return false;
+}
+
+var sendNotification = function(msg){
+    var PORT = process.env.PORT || 8080;
+    var socket = require('socket.io-client')('http://localhost:' + PORT);
+    socket.on('connect', function(){
+        socket.emit('naoouvo', msg);
+    });
+}
+
 var getFeed = function(){
-   feed = getData();
+    var newFeed = getData();
+    checkNewPodcast(newFeed);
+    feed = newFeed;
 }
 setInterval(getFeed, delayFunction);
 
@@ -113,6 +130,7 @@ var myFeed = function(myFeed){
 
     count = myFeed.length;
     podcasts["num"] = count;
+
     return podcasts;
 }
 
