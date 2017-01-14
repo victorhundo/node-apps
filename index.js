@@ -12,6 +12,18 @@ var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || 'localhost'
 
 // Main application.
 var app = express();
+var server = require('http').createServer(app);  
+var io = require('socket.io')(server);
+
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
+
+
+
 
 // Seting static files path
 app.use('/res',  express.static(__dirname + '/static/'));

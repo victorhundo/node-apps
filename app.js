@@ -11,6 +11,14 @@ var naoouvo = require('./apps/naoouvo');
 const PORT = process.env.PORT || 8080;
 
 const app = express();
+var server = require('http').createServer(app);  
+var io = require('socket.io')(server);
+
+io.on('connection', function(socket){
+   	socket.on('naoouvo', function(msg){
+		io.emit('chat message', msg);
+	});
+});
 
 // Seting static files path
 app.use('/res',  express.static(__dirname + '/static/'));
@@ -28,7 +36,7 @@ app.use('/', main);
 app.use('/naoouvo', naoouvo);
 
 // Start the server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
   console.log('Press Ctrl+C to quit.');
 });

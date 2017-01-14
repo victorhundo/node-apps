@@ -10,6 +10,15 @@ var count = 0;
 var delayFunction = 300000; //5min
 var feed = undefined;
 
+
+naoouvo.get('/server', function (req, res) {  
+    var socket = require('socket.io-client')('http://localhost:8080');
+    socket.on('connect', function(){
+        socket.emit('naoouvo', 'Hello From Nao Ouvo');
+    });
+    res.send(200);
+});
+
 var getFeed = function(){
    feed = getData();
 }

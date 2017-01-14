@@ -1,5 +1,10 @@
 angular.module("naoouvo").controller("main", function($scope, $http, $window, $sce){
 
+    var socket = io.connect();
+    socket.on('chat message', function(msg){
+        alert(msg);
+    });
+
     var NaoOuvoFeed = "/naoouvo/feed";
     $scope.Npagination = 4;
     var count = 0;
