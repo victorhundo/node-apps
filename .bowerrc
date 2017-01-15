@@ -1,3 +1,4 @@
 {
-	"directory": "static/lib"
+  "directory": "static/lib",
+  "allow_root": true
 }

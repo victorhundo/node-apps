@@ -1,6 +1,6 @@
 {
-  "name": "appengine-hello-world",
-  "description": "Simple Hello World Node.js sample for Google App Engine",
+  "name": "node-apps",
+  "description": "Server for web apps on Google App Engine",
   "version": "0.0.1",
   "private": true,
   "license": "Apache Version 2.0",
@@ -9,14 +9,17 @@
     "node": ">=4.3.2"
   },
   "scripts": {
-    "start": "node app.js"
+    "postinstall": "bower install --config.interactive=false",
+    "deploy": "gcloud app deploy"
   },
   "dependencies": {
     "express": "^4.14.0",
+    "bower": "1.8.0",
     "express-request-proxy": "^2.0.0",
     "find-key": "^2.0.1",
     "redis": "^2.6.3",
     "socket.io": "^1.7.2",
-    "sync-request": "^3.0.1"
+    "sync-request": "^3.0.1",
+    "pug": "2.0.0-beta6"
   }
 }
