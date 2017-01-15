@@ -1,27 +1,21 @@
-angular.module("naoouvo").controller("main", function($scope, $http, $window, $sce){
+angular.module("naoouvo").controller("main", function($scope, $http, $window, $sce, desktopNotification){
+
+    desktopNotification.requestPermission().then(function (permission) {
+        // User allowed the notification
+    }, function (permission) {
+        // User denied the notification
+    });
 
     var socket = io.connect();
     socket.on('chat message', function(msg){
-        alert('Novo Podcast! ' + msg.title);
+        desktopNotification.show('Sim é verrrrdade, mais um Não Ouvo!!', {
+            body: msg.subtitle,
+            icon: '/res/naoouvo/img/icon.jpeg',
+            onClick: function () {
+            // Handle click event
+            }
+        }); 
     });
-
-    /*if (window.webkitNotifications) {
-        console.log("Notifications are supported!");
-    }
-    else {
-        console.log("Notifications are not supported for this Browser/OS version yet.");
-    }
-
-    /*if (window.webkitNotifications.checkPermission() == 0) { // 0 is PERMISSION_ALLOWED
-        // function defined in step 2
-        notification_test = window.webkitNotifications.createNotification(
-          '/res/img/icon.jpeg', 'Notification Title', 'Notification content...');
-        notification_test.ondisplay = function() { ... do something ... };
-        notification_test.onclose = function() { ... do something else ... };
-        notification_test.show();
-    } else {
-        window.webkitNotifications.requestPermission();
-    }*/
 
     var NaoOuvoFeed = "/naoouvo/feed";
     $scope.Npagination = 4;

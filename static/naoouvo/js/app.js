@@ -1,1 +1,1 @@
-angular.module("naoouvo", []);
+angular.module("naoouvo", ['ngDesktopNotification']);
