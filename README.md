@@ -14,7 +14,7 @@ Aplicações web hospedados ou direcionados para [Victor-Sousa](http://victor-so
 
 `git clone https://github.com/victorhundo/node-apps.git && cd node-apps`
 
-`docker build -t node-apps`
+`docker build -t node-apps .`
 
 ``` 
 docker run -d \
