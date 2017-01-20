@@ -19,7 +19,6 @@ angular.module("naoouvo").controller("main", function($scope, $http, $window, $s
 
     var NaoOuvoFeed = "/naoouvo/feed";
     $scope.Npagination = 4;
-    var count = 0;
 
     $http.get(NaoOuvoFeed)
      .then(function (success){
@@ -83,7 +82,7 @@ angular.module("naoouvo").controller("main", function($scope, $http, $window, $s
     }
 
     var setCurrentFeed = function(feed, title){
-    	count = 0;
+    	count = -1;
     	$scope.feedTitle = title;
     	$scope.currentFeed = feed;
     	$scope.currentPod = count + 1;
@@ -93,15 +92,16 @@ angular.module("naoouvo").controller("main", function($scope, $http, $window, $s
     var setExibition = function(){
     	var array = $scope.currentFeed;
     	var index = arrayMod(count, array.length);
-    	
-    	exibition = [];
-    	for(i = 0; i < $scope.Npagination; i++){
-    		if(i > array.length - 1)
-    			break;
-    		exibition.push(array[index[i]]);
-    	}
-    	$scope.exibition = exibition;
-    	$scope.currentPod = index[0] + 1;
+        
+        exibition = [];
+        for(i = 0; i < $scope.Npagination; i++){
+            if(i > array.length - 1)
+                break;
+            exibition.push(array[index[i]]);
+        }
+        $scope.exibition = exibition;
+        $scope.currentPod = index[0] + 1;
+
 
     }
 
@@ -115,8 +115,8 @@ angular.module("naoouvo").controller("main", function($scope, $http, $window, $s
     }
 
     $scope.nextPag = function(){
-    	count++;
-    	setExibition();
+        count++;
+        setExibition();
     }
 
     $scope.prevPag = function(){
@@ -176,5 +176,17 @@ angular.module("naoouvo").controller("main", function($scope, $http, $window, $s
             return title.split('-')[1];
         return title;
     }
+
+    $scope.category = [
+      {name:'Todos', value:'todos'},
+      {name:'Não Ouvo', value:'naoouvo'},
+      {name:'Teoria Não ouvo', value:'teoria'},
+      {name:'Visita Não ouvo', value:'visita'},
+      {name:'Plantão Não ouvo', value:'plantao'},
+      {name:'Cartinha do Não Ouvinte', value: 'cartinha'},
+      {name:'Análise Musical', value: 'outros'},
+      {name:'Outros', value: 'outros'},
+    ];
     
+     $scope.myCategory = $scope.category[0];
 });

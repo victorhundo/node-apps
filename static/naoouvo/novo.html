@@ -1,0 +1,62 @@
+<html ng-app="naoouvo">
+<head>
+    <meta charset="UTF-8">
+    <title>Não Ouvo</title>
+
+    <link rel="stylesheet" type="text/css" href="/res/lib/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript" src="/res/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="/res/lib/angular-desktop-notification/angular-desktop-notification.js"></script>
+    <link rel="stylesheet" type="text/css" href="/res/naoouvo/css/custom-style.css">
+    <script src="/res/lib/jquery/dist/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="/res/lib/socket.io-client/dist/socket.io.js"></script>
+    <script type="text/javascript" src="/res/naoouvo/js/app.js"></script>
+    <script type="text/javascript" src="/res/naoouvo/js/controllers/mainController.js">
+    </script>
+
+</head>
+<body ng-controller="main" class="container-fluid" style="background: #E9E9E9">
+    <div class="app">
+    <h1 ng-bind="feed.title"></h1>
+
+
+<div class="input-group">
+    <span class="input-group-addon glyphicon glyphicon-search"></span>
+    <input class="form-control" type="text" ng-model="titulo" />
+  
+    <!-- insert this line -->
+    <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+  
+    <select class="form-control" ng-model="myCategory" ng-options="c.name for c in category"></select>
+</div>
+
+
+    <table class="table"> 
+        <td  style="vertical-align: middle" class="next-prev">
+            <a href="#" class="col-sm-1 text-left vcenter next-prev" style="padding: 0px" ng-click="prevPag()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        </td>
+        <td>
+        <table  class="table">
+                <tr >
+                    <td ng-repeat="podcast in exibition.slice(0,2)">
+                        <img ng-src="{{podcast.img}}" title="{{podcast.title}}" class="img-responsive"/>
+                    </td>
+                </tr>
+                <tr >
+                    <td ng-repeat="podcast in exibition.slice(2,4)">
+                        <img ng-src="{{podcast.img}}" title="{{podcast.title}}" class="img-responsive"/>
+                    </td>
+                </tr>
+        </table>
+        </td>
+        <td style="vertical-align: middle" class="next-prev">
+            <a href="#" class="col-sm-1 text-left vcenter next-prev" style="padding: 0px" ng-click="nextPag()"><span class="glyphicon glyphicon-chevron-right "></span></a>
+        </td>
+    </table>
+    
+    
+    </div>
+    <footer class="navbar-fixed-bottom" ng-include="'/res/naoouvo/html/player.html'"></div>
+</body>
+</html>
+

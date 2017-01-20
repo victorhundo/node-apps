@@ -25,7 +25,7 @@ footer {
 }
 
 .next-prev,.next-prev:hover, .next-prev:focus{
-	font-size: 30px;
+	font-size: 50px;
     color: #3E3D39;
 }
 
@@ -57,4 +57,36 @@ footer {
 
 .satanas{
     background-color: #000;
+}
+
+.app{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1{
+    text-align: center;
+}
+
+.internal-table{
+    padding: 0px;
+    margin: 0px;
+}
+
+.middle{
+    vertical-align: middle;
+}
+
+.table th, .table td { 
+    background: #E9E9E9;
+     border-top: none !important; 
+ }
+
+.img-responsive{
+    float: right;
+}
+
+.form-control{
+    float: left;
 }

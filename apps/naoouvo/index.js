@@ -46,6 +46,10 @@ naoouvo.get('/', function (req, res) {
   res.sendfile('./static/naoouvo/index.html');
 });
 
+naoouvo.get('/novo', function (req, res) {  
+  res.sendfile('./static/naoouvo/novo.html');
+});
+
 naoouvo.get('/feed', function (req, res) {
     res.set({'Content-Type': 'application/json'});
     if (feed == undefined)
