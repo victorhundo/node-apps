@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="demolay">
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/res/lib/angular-material/angular-material.css">
+    <script src="/res/lib/angular/angular.js"></script>
+    <script src="/res/lib/angular-aria/angular-aria.js"></script>
+    <script src="/res/lib/angular-animate/angular-animate.js"></script>
+    <script src="/res/lib/angular-material/angular-material.js"></script>
+    <script src="/res/demolay/js/app.js"></script>
+    <script src="/res/demolay/js/controllers/main.js"></script>
+</head>
+<body ng-controller="main">
+    <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Card with image</span>
+            <span class="md-subhead">Large</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+      </md-card>
+</body>
+</html>

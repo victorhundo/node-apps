@@ -7,6 +7,7 @@ var redis = require('redis');
 var requestProxy = require('express-request-proxy');
 var main = require('./apps/main')
 var naoouvo = require('./apps/naoouvo');
+var demolay = require('./apps/demolay');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -25,6 +26,7 @@ app.use(function(req, res, next) {
 // Mouting applications.
 app.use('/', main);
 app.use('/naoouvo', naoouvo);
+app.use('/demolay', demolay);
 
 var server = require('http').createServer(app);  
 var io = require('socket.io')(server);
