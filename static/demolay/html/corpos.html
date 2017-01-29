@@ -1,0 +1,25 @@
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab ng-repeat="corpoGrupo in grupos "label="{{corpoGrupo}}">
+			<md-card ng-repeat="corpo in data.corpos[corpoGrupo]" >
+        <md-card-title>
+          <md-card-title-text >
+            <span class="md-headline" ng-bind="corpo.nome"></span>
+            <span class="md-subhead" ng-bind="corpo.cidade"></span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-md card-media">
+            	<img ng-src="{{corpo.imgext}}">
+            </div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-raised md-primary" md-colors="{background: 'red'}" ng-click="showTabDialog(corpo, corpoGrupo)"> info</md-button>
+        </md-card-actions>
+</md-card>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
+

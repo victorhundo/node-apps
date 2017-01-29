@@ -1,0 +1,17 @@
+<div ng-cloak >
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom >
+      <md-tab ng-repeat="contatoGrupo in grupos "label="{{contatoGrupo}}">
+			<md-content >
+			<md-list-item ng-href="#!/contatos" ng-click="showTabDialog(contato, 'contatos')" ng-repeat="contato in data.contatos[contatoGrupo]">
+			<img ng-src="{{contato.imgext}}" class="md-avatar">
+			<p ng-bind="contato.cargo"></p>
+			<md-icon><i class="material-icons">phone</i></md-icon>
+			<md-icon><i class="material-icons">email</i></md-icon>
+			</md-list-item>
+			</md-list>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
+

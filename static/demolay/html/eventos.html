@@ -1,0 +1,16 @@
+<md-card ng-repeat="evento in data.eventos" >
+        <md-card-title>
+          <md-card-title-text >
+            <span class="md-headline" ng-bind="evento.nome"></span>
+            <span class="md-subhead" ng-bind="evento.cidade"></span>
+            <p class="md-subhead" ng-bind="evento.informacoes"></p>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-md card-media">
+            	<img ng-src="{{evento.imgext}}">
+            </div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+        </md-card-actions>
+</md-card>

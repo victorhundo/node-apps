@@ -1,0 +1,34 @@
+<md-tabs md-dynamic-height md-border-bottom>
+  <md-tab label="Comendador">
+    <md-content class="md-padding">
+      <md-list-item ng-href="#">
+          <md-icon><i class="material-icons">account_circle</i></md-icon>
+          <p ng-bind="item.comnome"></p>
+        </md-list-item>
+          <md-list-item ng-href="#">
+          <md-icon><i class="material-icons">phone</i></md-icon>
+        <p ng-bind="item.comtelefone"></p>
+        </md-list-item>
+          <md-list-item ng-href="#">
+          <md-icon><i class="material-icons">email</i></md-icon>
+        <p ng-bind="item.comemail"></p>
+        </md-list-item>
+    </md-content>
+  </md-tab>
+  <md-tab label="Secretário">
+    <md-content class="md-padding">
+      <md-list-item ng-href="#">
+          <md-icon><i class="material-icons">account_circle</i></md-icon>
+          <p ng-bind="item.secnome"></p>
+        </md-list-item>
+          <md-list-item ng-href="#">
+          <md-icon><i class="material-icons">phone</i></md-icon>
+        <p ng-bind="item.sectelefone"></p>
+        </md-list-item>
+          <md-list-item ng-href="#">
+          <md-icon><i class="material-icons">email</i></md-icon>
+        <p ng-bind="item.secemail"></p>
+        </md-list-item>
+    </md-content>
+  </md-tab>
+</md-tabs>

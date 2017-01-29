@@ -1,1 +1,1 @@
-angular.module("demolay", ['ngMaterial']);
+angular.module("demolay", ['ngMaterial', 'ngRoute']);

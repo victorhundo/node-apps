@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html ng-app="demolay">
 <head>
+    <title>Demolay PB</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/res/lib/angular-material/angular-material.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/res/lib/bootstrap/dist/css/bootstrap.css">
     <script src="/res/lib/angular/angular.js"></script>
+    <script src="/res/lib/angular-route/angular-route.js"></script>
     <script src="/res/lib/angular-aria/angular-aria.js"></script>
     <script src="/res/lib/angular-animate/angular-animate.js"></script>
     <script src="/res/lib/angular-material/angular-material.js"></script>
     <script src="/res/demolay/js/app.js"></script>
+    <script src="/res/demolay/js/config.js"></script>
+    <script src="/res/demolay/js/controllers/toolbar.js"></script>
     <script src="/res/demolay/js/controllers/main.js"></script>
+    <script src="/res/demolay/js/controllers/home.js"></script>
+    <script src="/res/demolay/js/controllers/contatos.js"></script>
+    <script src="/res/demolay/js/controllers/corpos.js"></script>
+    <script src="/res/demolay/js/controllers/eventos.js"></script>
+    <script src="/res/demolay/js/controllers/taxas.js"></script>
 </head>
-<body ng-controller="main">
-    <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">Card with image</span>
-            <span class="md-subhead">Large</span>
-          </md-card-title-text>
-          <md-card-title-media>
-            <div class="md-media-lg card-media"></div>
-          </md-card-title-media>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button>Action 1</md-button>
-          <md-button>Action 2</md-button>
-        </md-card-actions>
-      </md-card>
+<body ng-controller="Toolbar">
+<section  ng-controller="Main" layout='column' layout-fill>
+<section layout="row" ng-include="'/res/demolay/html/toolbar.html'" ></section> <!-- Toolbar !-->
+<section layout="row" flex >
+    <md-content flex ng-view ></md-content> <!-- Conteudo !-->
+    <section ng-include="'/res/demolay/html/sidenav.html'"></section> <!-- Menu lateral !-->
+</section>
+</section>
 </body>
 </html>

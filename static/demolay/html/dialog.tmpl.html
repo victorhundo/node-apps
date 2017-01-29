@@ -1,0 +1,23 @@
+<md-dialog>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 ng-bind="item.nome || item.grau"></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog"><i class="material-icons">close</i></md-icon>
+        </md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px; ">
+<div ng-if="item.tipo == 'capitulos'" ng-include="'/res/demolay/html/dialog/capitulos.html'"></div>
+<div ng-if="item.tipo == 'contatos'" ng-include="'/res/demolay/html/dialog/contatos.html'"></div>
+<div ng-if="item.tipo == 'priorados'" ng-include="'/res/demolay/html/dialog/priorados.html'"></div>
+<div ng-if="item.tipo == 'castelos'"  ng-include="'/res/demolay/html/dialog/castelos.html'"></div>
+<div ng-if="item.tipo == 'cortes'"    ng-include="'/res/demolay/html/dialog/cortes.html'"></div>
+<div ng-if="item.tipo == 'taxas'"     ng-include="'/res/demolay/html/dialog/taxas.html'"></div>
+    </md-dialog-content>
+  </form>
+</md-dialog>
+

@@ -1,0 +1,26 @@
+<md-tabs md-dynamic-height md-border-bottom>
+  <md-tab label="Nobre Cavaleiro">
+    <md-content class="md-padding">
+      <md-list-item ng-href="#">
+          <md-icon><i class="material-icons">account_circle</i></md-icon>
+          <p ng-bind="item.nobrecavaleironome"></p>
+        </md-list-item>
+          <md-list-item ng-href="#">
+          <md-icon><i class="material-icons">phone</i></md-icon>
+        <p ng-bind="item.nobrecavaleirotelefone"></p>
+        </md-list-item>
+    </md-content>
+  </md-tab>
+  <md-tab label="Consultor">
+    <md-content class="md-padding">
+      <md-list-item ng-href="#">
+          <md-icon><i class="material-icons">account_circle</i></md-icon>
+          <p ng-bind="item.consultornome"></p>
+        </md-list-item>
+          <md-list-item ng-href="#">
+          <md-icon><i class="material-icons">phone</i></md-icon>
+        <p ng-bind="item.consultortelefone"></p>
+        </md-list-item>
+    </md-content>
+  </md-tab>
+</md-tabs>
