@@ -1,7 +1,10 @@
 angular.module("demolay").controller("Main", function($scope, $http, $timeout, $mdSidenav,  $mdDialog){
+
+  $scope.data = JSON.parse(window.localStorage.getItem('data'));
   $http.get("/demolay/data")
      .then(function (success){
-        $scope.data = success.data;
+        window.localStorage.setItem( 'data', JSON.stringify(success.data));
+        $scope.data = JSON.parse(window.localStorage.getItem('data'));
      },function (error){
         console.log("TA PEGANDO FOGO BIXO!")
      });

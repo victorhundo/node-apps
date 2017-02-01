@@ -4,6 +4,7 @@ var fs      = require('fs');
 var path = require('path');
 var request = require('sync-request');
 var Find = require('find-key');
+require('shelljs/global');
 
 //Json File - http://blog.pamelafox.org/2013/06/exporting-google-spreadsheet-as-json.html
 var _capitulos = require('./json/capitulos.js');
@@ -18,6 +19,7 @@ var _taxas = require('./json/taxas.js');
 var _news = undefined;
 var delayFunction = 300000; //5min
 var demolay = express();
+var cachePath = "./static/demolay/app.cache";
 
 var getNews = function(){
 	if (_news == undefined)
@@ -50,6 +52,82 @@ demolay.get('/', function (req, res) {
     res.sendfile('./static/demolay/index.html');
 });
 
+demolay.get('/cache', function (req, res) {
+	exec("echo  CACHE MANIFEST > " + cachePath, {silent:true}).stdout;
+	getCache();
+	getCacheImg(_capitulos, "capitulos");
+	getCacheImg(_castelos, 'castelos');
+	getCacheImg(_cortes, 'cortes');
+	getCacheImg(_eventos, 'eventos');
+	getCacheImg(_gabinete, 'gabinete');
+	getCacheImg(_gce, 'gce');
+	getCacheImg(_oficiais, 'oficiais');
+	getCacheImg(_priorados, 'priorados');
+	getCacheImg(getNews(), 'noticias');
+	exec("echo   >> " + cachePath, {silent:true}).stdout;
+	exec("echo   NETWORK: >>  " + cachePath, {silent:true}).stdout;
+	exec("echo   \\* >>  " + cachePath, {silent:true}).stdout;
+    res.send(200);
+});
+
+
+getCache = function(){
+	exec("echo   >> " + cachePath, {silent:true}).stdout;
+	libs = [
+		'/res/lib/angular-material/angular-material.css',
+		'https://fonts.googleapis.com/icon?family=Material+Icons',
+		'/res/lib/bootstrap/dist/css/bootstrap.css',
+		'/res/lib/angular/angular.js',
+		'/res/lib/angular-route/angular-route.js',
+		'/res/lib/angular-aria/angular-aria.js',
+		'/res/lib/angular-animate/angular-animate.js',
+		'/res/lib/angular-material/angular-material.js',
+		'/res/demolay/js/app.js',
+		'/res/demolay/js/config.js',
+		'/res/demolay/js/controllers/toolbar.js',
+		'/res/demolay/js/controllers/main.js',
+		'/res/demolay/js/controllers/home.js',
+		'/res/demolay/js/controllers/contatos.js',
+		'/res/demolay/js/controllers/corpos.js',
+		'/res/demolay/js/controllers/taxas.js',
+		'/res/demolay/js/controllers/cache.js'
+	]
+
+	html = [
+		'/res/demolay/html/cache.html',
+		'/res/demolay/html/home.html',
+		'/res/demolay/html/toolbar.html',
+		'/res/demolay/html/contatos.html',
+		'/res/demolay/html/dialog.tmpl.html',
+		'/res/demolay/html/sidenav.html',
+		'/res/demolay/html/corpos.html',
+		'/res/demolay/html/eventos.html',
+		'/res/demolay/html/taxas.html',
+		'/res/demolay/html/dialog/capitulos.html',
+		'/res/demolay/html/dialog/castelos.html',
+		'/res/demolay/html/dialog/contatos.html',
+		'/res/demolay/html/dialog/cortes.html',
+		'/res/demolay/html/dialog/priorados.html',
+		'/res/demolay/html/dialog/taxas.html'
+	]
+
+	for(i in html)
+		exec("echo " + html[i] + " >> " + cachePath, {silent:true}).stdout;
+	for(i in libs)
+		exec("echo " + libs[i] + " >> "  + cachePath, {silent:true}).stdout;
+}
+          
+getCacheImg = function(array, tipo){
+	exec("echo   >> " + cachePath, {silent:true}).stdout;
+	exec("echo \\#" + tipo + " >> " + cachePath, {silent:true}).stdout;
+	for(i in array){
+		if(tipo != 'noticias')
+			exec("echo " + array[i].imgext + " >> " + cachePath, {silent:true}).stdout;
+		else
+			exec("echo " + array[i].img + " >> " + cachePath, {silent:true}).stdout;
+	}
+}
+
 demolay.get('/data', function (req, res) {
 	var api = {
 		noticias: getNews(),
@@ -67,6 +145,7 @@ demolay.get('/data', function (req, res) {
 		eventos: _eventos,
 		taxas: _taxas
 	}
+
     res.send(api);
 });
 

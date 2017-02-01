@@ -31,6 +31,10 @@ angular.module("demolay").config(function($routeProvider, $locationProvider, $md
     templateUrl: '/res/demolay/html/eventos.html',
     controller: 'Eventos'
   })
+  .when('/cache', {
+    templateUrl: '/res/demolay/html/cache.html',
+    controller: 'Cache'
+  })
   .when('/taxas', {
     templateUrl: '/res/demolay/html/taxas.html',
     controller: 'Taxas'
