@@ -3,7 +3,7 @@
         <h1 class="md-toolbar-tools">Menu</h1>
     </md-toolbar>
 
-	<md-list-item ng-href="{{item.href}}" ng-click="closeToolbar()" ng-repeat="item in menu">
+	<md-list-item ng-href="{{item.href}}" ng-click="closeToolbar(item.href)" ng-repeat="item in menu">
 	    <md-icon><i class="material-icons" ng-bind="item.icon"></i></md-icon>
 	    <p ng-bind="item.nome"></p>
 	</md-list-item>

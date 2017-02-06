@@ -1,4 +1,4 @@
-<md-card ng-repeat="evento in data.eventos" >
+<md-card ng-repeat="evento in eventos" >
         <md-card-title>
           <md-card-title-text >
             <span class="md-headline" ng-bind="evento.nome"></span>
@@ -7,7 +7,7 @@
           </md-card-title-text>
           <md-card-title-media>
             <div class="md-media-md card-media">
-            	<img ng-src="{{evento.imgext}}">
+            	<img ng-src="{{evento.img}}">
             </div>
           </md-card-title-media>
         </md-card-title>

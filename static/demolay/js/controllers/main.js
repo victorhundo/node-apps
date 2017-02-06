@@ -1,45 +1,41 @@
-angular.module("demolay").controller("Main", function($scope, $http, $timeout, $mdSidenav,  $mdDialog){
+angular.module("demolay").controller("Main", function($scope, $mdSidenav,  $mdDialog, $window){
 
-  $scope.data = JSON.parse(window.localStorage.getItem('data'));
-  $http.get("/demolay/data")
-     .then(function (success){
-        window.localStorage.setItem( 'data', JSON.stringify(success.data));
-        $scope.data = JSON.parse(window.localStorage.getItem('data'));
-     },function (error){
-        console.log("TA PEGANDO FOGO BIXO!")
-     });
-
+  $scope.loading = true;
+  $scope.loaded = function(){
+      $scope.loading = !$scope.loading;
+  }
+  
   $scope.appTitle = "DeMolay PB"
   $scope.icons = {
       menu: "reorder"
   }
 
   $scope.menu = [
-  	{
-  		nome: "Home",
-  		icon: "home",
-  		href: "#!/"
-  	},
-  	{
-  		nome: "Contatos",
-  		icon: "contact_phone",
-  		href: "#!/contatos"
-  	},
-  	{
-  		nome: "Corpos",
-  		icon: "bookmark",
-  		href: "#!/corpos"
-  	},
-  	{
-  		nome: "Eventos",
-  		icon: "event",
-  		href: "#!/eventos"
-  	},
-  	{
-  		nome: "Taxas",
-  		icon: "attach_money",
-  		href: "#!/taxas"
-  	},
+    {
+      nome: "Home",
+      icon: "home",
+      href: "#!/"
+    },
+    {
+      nome: "Contatos",
+      icon: "contact_phone",
+      href: "#!/contatos"
+    },
+    {
+      nome: "Corpos",
+      icon: "bookmark",
+      href: "#!/corpos"
+    },
+    {
+      nome: "Eventos",
+      icon: "event",
+      href: "#!/eventos"
+    },
+    {
+      nome: "Taxas",
+      icon: "attach_money",
+      href: "#!/taxas"
+    },
   ]
 
   $scope.showTabDialog = function(item, tipo) {
@@ -73,6 +69,39 @@ angular.module("demolay").controller("Main", function($scope, $http, $timeout, $
     $scope.item = $mdDialog.item;
 
   }
+
+  
+
+
+  $scope.toggleRight = buildToggler('left');
+  $scope.isOpenRight = function(){
+    return $mdSidenav('left').isOpen();
+  };
+
+  function buildToggler(navID) {
+    return function() {
+      // Component lookup should always be available since we are not using `ng-if`
+      $mdSidenav(navID).toggle()
+    }
+  }
+
+  $scope.delay = function(){
+    setTimeout(function(){
+      $scope.loaded();
+      $scope.$apply(); 
+    }, 2500);
+  }
+  
+  var flagAccess = $window.location.toString().split('demolay')[1]; //Garantir que o loading só ocorra quando acessa um serviço diferente
+  $scope.closeToolbar = function (flag) {
+    // Component lookup should always be available since we are not using `ng-if`
+      $mdSidenav('left').close();
+      if(flagAccess != flag){
+        flagAccess = flag;
+        $scope.delay();
+      }
+    
+  };
 
 
 });

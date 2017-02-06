@@ -18,26 +18,47 @@ angular.module("demolay").config(function($routeProvider, $locationProvider, $md
    .when('/', {
     templateUrl: '/res/demolay/html/home.html',
     controller: 'Home',
+    resolve: {
+        demolayData : function(dataAPI){
+          return dataAPI.getNoticias();
+        }
+    }
   })
   .when('/contatos', {
     templateUrl: '/res/demolay/html/contatos.html',
-    controller: 'Contatos'
+    controller: 'Contatos',
+    resolve: {
+        contatos : function(dataAPI){
+          return dataAPI.getContatos();
+        }
+    }
   })
   .when('/corpos', {
     templateUrl: '/res/demolay/html/corpos.html',
-    controller: 'Corpos'
+    controller: 'Corpos',
+    resolve: {
+        corpos : function(dataAPI){
+          return dataAPI.getCorpos();
+        }
+    }
   })
   .when('/eventos', {
     templateUrl: '/res/demolay/html/eventos.html',
-    controller: 'Eventos'
-  })
-  .when('/cache', {
-    templateUrl: '/res/demolay/html/cache.html',
-    controller: 'Cache'
+    controller: 'Eventos',
+    resolve: {
+        eventos : function(dataAPI){
+          return dataAPI.getEventos();
+        }
+    }
   })
   .when('/taxas', {
     templateUrl: '/res/demolay/html/taxas.html',
-    controller: 'Taxas'
+    controller: 'Taxas',
+    resolve: {
+        taxas : function(dataAPI){
+          return dataAPI.getTaxas();
+        }
+    }
   });
 
 });
