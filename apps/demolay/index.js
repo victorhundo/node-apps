@@ -46,7 +46,7 @@ var getNews = function(){
 
 var getJson = function(array, i){
 	return new Promise(function(resolve, reject){
-		http("http://192.168.25.64:1916/demolaypb", function (error, response, body) {
+		http("http://flash-json.appspot.com/demolaypb", function (error, response, body) {
 			var result = JSON.parse(body);
 			_capitulos 	= result.corpos.capitulos;
 			_castelos	= result.corpos.castelos;
