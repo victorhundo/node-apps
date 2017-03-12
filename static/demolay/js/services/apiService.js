@@ -1,36 +1,31 @@
-angular.module("demolay").factory("dataAPI", function ($http, config){
+angular.module("demolay").factory("dataAPI", function ($http, config, $window){
 
-	var _getData = function(){
-		return $http.get( config.baseUrl + '/demolay/data');
-	};
+	var items = [];
+    return {
+        resolver: function(){
+            return $http.get(config.baseUrl + '/demolay/data').then(function(success){
+                items = success.data;
+            })
+            
+            /*
+             --- Storage Data Android ---
 
-	var _getNoticias = function(){
-		return $http.get( '/demolay/data/noticias');
-	};
-
-	var _getContatos = function(){
-		return $http.get( '/demolay/data/contatos');
-	};
-
-	var _getCorpos = function(){
-		return $http.get( '/demolay/data/corpos');
-	};
-
-	var _getEventos = function(){
-		return $http.get( '/demolay/data/eventos');
-	};
-
-	var _getTaxas = function(){
-		return $http.get( '/demolay/data/taxas');
-	};
-
-	return {
-		getData: _getData,
-		getNoticias: _getNoticias,
-		getContatos: _getContatos,
-		getCorpos: _getCorpos,
-		getEventos: _getEventos,
-		getTaxas: _getTaxas
-	};
+            if(Android.firstAccess() == "true"){
+                return $http.get( 'file:///android_asset/www/demolay/data.json').then(function (success){
+                    Android.saveData(JSON.stringify(success.data));
+                    items = JSON.parse(Android.getData());
+                    Android.setAcessFlag();
+                });
+            }else{
+                items = JSON.parse(Android.getData());
+                $http.get( config.baseUrl +  '/demolay/data/').then(function (success){
+                    Android.saveData(JSON.stringify(success.data));
+                });
+            } */
+        },
+        get() {
+            return items;
+        }
+    }
 });
 

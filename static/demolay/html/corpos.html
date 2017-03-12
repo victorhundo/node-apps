@@ -3,8 +3,11 @@
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab ng-repeat="corpoGrupo in grupos "label="{{corpoGrupo}}">
       
+
       <md-content >
-			<md-card ng-repeat="corpo in corpos[corpoGrupo]" >
+
+      <div infinite-scroll='loadMore(corpoGrupo)' infinite-scroll-distance='2'>
+  			<md-card ng-repeat="corpo in corpos[corpoGrupo]" >
         <md-card-title>
           <md-card-title-text >
             <span class="md-headline" ng-bind="corpo.nome"></span>
@@ -20,6 +23,8 @@
           <md-button class="md-raised md-primary" md-colors="{background: 'red'}" ng-click="showTabDialog(corpo, corpoGrupo)"> info</md-button>
         </md-card-actions>
         </md-card>
+      </div>
+
         </md-content >
       </md-tab>
     </md-tabs>

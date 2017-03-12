@@ -16,49 +16,37 @@ angular.module("demolay").config(function($routeProvider, $locationProvider, $md
     
   $routeProvider
    .when('/', {
-    templateUrl: '/res/demolay/html/home.html',
-    controller: 'Home',
+    templateUrl: '/res/demolay/html/loading.html',
+    controller: 'Loading',
     resolve: {
         demolayData : function(dataAPI){
-          return dataAPI.getNoticias();
+          return dataAPI.resolver();
         }
     }
+  })
+   .when('/home', {
+    templateUrl: '/res/demolay/html/home.html',
+    controller: 'Home',
   })
   .when('/contatos', {
     templateUrl: '/res/demolay/html/contatos.html',
     controller: 'Contatos',
-    resolve: {
-        contatos : function(dataAPI){
-          return dataAPI.getContatos();
-        }
-    }
   })
   .when('/corpos', {
     templateUrl: '/res/demolay/html/corpos.html',
-    controller: 'Corpos',
-    resolve: {
-        corpos : function(dataAPI){
-          return dataAPI.getCorpos();
-        }
-    }
+    controller: 'Corpos'
   })
   .when('/eventos', {
     templateUrl: '/res/demolay/html/eventos.html',
-    controller: 'Eventos',
-    resolve: {
-        eventos : function(dataAPI){
-          return dataAPI.getEventos();
-        }
-    }
+    controller: 'Eventos'
   })
   .when('/taxas', {
     templateUrl: '/res/demolay/html/taxas.html',
-    controller: 'Taxas',
-    resolve: {
-        taxas : function(dataAPI){
-          return dataAPI.getTaxas();
-        }
-    }
+    controller: 'Taxas'
   });
+
+  $routeProvider.otherwise({
+    redirectTo: '/'
+});
 
 });

@@ -1,10 +1,5 @@
-angular.module("demolay").controller("Main", function($scope, $mdSidenav,  $mdDialog, $window){
+angular.module("demolay").controller("Main", function($scope, $mdSidenav,  $mdDialog, $window, config, dataAPI){
 
-  $scope.loading = true;
-  $scope.loaded = function(){
-      $scope.loading = !$scope.loading;
-  }
-  
   $scope.appTitle = "DeMolay PB"
   $scope.icons = {
       menu: "reorder"
@@ -14,7 +9,7 @@ angular.module("demolay").controller("Main", function($scope, $mdSidenav,  $mdDi
     {
       nome: "Home",
       icon: "home",
-      href: "#!/"
+      href: "#!/home"
     },
     {
       nome: "Contatos",
@@ -87,7 +82,6 @@ angular.module("demolay").controller("Main", function($scope, $mdSidenav,  $mdDi
 
   $scope.delay = function(){
     setTimeout(function(){
-      $scope.loaded();
       $scope.$apply(); 
     }, 2500);
   }
@@ -95,12 +89,7 @@ angular.module("demolay").controller("Main", function($scope, $mdSidenav,  $mdDi
   var flagAccess = $window.location.toString().split('demolay')[1]; //Garantir que o loading só ocorra quando acessa um serviço diferente
   $scope.closeToolbar = function (flag) {
     // Component lookup should always be available since we are not using `ng-if`
-      $mdSidenav('left').close();
-      if(flagAccess != flag){
-        flagAccess = flag;
-        $scope.delay();
-      }
-    
+      $mdSidenav('left').close();   
   };
 
 

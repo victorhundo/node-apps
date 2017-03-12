@@ -1,1 +1,1 @@
-angular.module("demolay", ['ngMaterial', 'ngRoute']);
+angular.module("demolay", ['ngMaterial', 'ngRoute', 'infinite-scroll']);

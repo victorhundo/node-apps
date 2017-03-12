@@ -3,7 +3,7 @@
     <md-tabs md-dynamic-height md-border-bottom >
       <md-tab ng-repeat="contatoGrupo in grupos "label="{{contatoGrupo}}">
 			<md-content >
-			<md-list-item ng-href="#!/contatos" ng-click="showTabDialog(contato, 'contatos')" ng-repeat="contato in cpntatos[contatoGrupo]">
+			<md-list-item ng-href="#!/contatos" ng-click="showTabDialog(contato, 'contatos')" ng-repeat="contato in contatos[contatoGrupo]">
 			<img ng-src="{{contato.img}}" class="md-avatar">
 			<p ng-bind="contato.cargo"></p>
 			<md-icon><i class="material-icons">phone</i></md-icon>

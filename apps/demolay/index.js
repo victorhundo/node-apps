@@ -6,8 +6,6 @@ var request = require('sync-request');
 var http = require('request').defaults({ encoding: null });;
 var Find = require('find-key');
 require('shelljs/global');
-var base64Img = require('base64-img');
-var rp = require('request-promise');
 
 //Json File - http://blog.pamelafox.org/2013/06/exporting-google-spreadsheet-as-json.html
 var _capitulos 	= undefined;
@@ -48,7 +46,7 @@ var getNews = function(){
 
 var getJson = function(array, i){
 	return new Promise(function(resolve, reject){
-		http("http://flash-json.appspot.com/demolaypb", function (error, response, body) {
+		http("http://192.168.25.64:1916/demolaypb", function (error, response, body) {
 			var result = JSON.parse(body);
 			_capitulos 	= result.corpos.capitulos;
 			_castelos	= result.corpos.castelos;

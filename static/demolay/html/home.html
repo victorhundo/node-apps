@@ -1,3 +1,4 @@
+<div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
 <md-card ng-repeat="noticia in noticias">
         <img ng-src="{{noticia.img}}" class="md-card-image">
         <md-card-title>
@@ -12,3 +13,4 @@
           <md-button href="{{noticia.link}}" target="_blank" md-href="">leia mais</md-button>
         </md-card-actions>
 </md-card>
+</div>
